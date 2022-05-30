@@ -1,0 +1,24 @@
+version: '2'
+services:
+  php-cli:
+    build:
+      context: './../'
+      dockerfile: ./docker/Dockerfile
+      args:
+        - INSTALL_BCMATH=true
+        - INSTALL_PHPREDIS=true
+        - INSTALL_OPCACHE=false
+        - INSTALL_IMAGEMAGICK=false
+        - INSTALL_EXIF=false
+        - INSTALL_PCNTL=false
+        - INSTALL_INTL=false
+        - INSTALL_SOAP=false
+        - INSTALL_PGSQL=true
+        - INSTALL_MYSQL=false
+        - INSTALL_GETTEXT=false
+        - INSTALL_SOCKETS=false
+        - INSTALL_MEMCACHED=false
+        - INSTALL_PECL_SYNC=true
+    tty: true
+    volumes:
+      - ./../:/var/www/html:cached

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use SMSkin\IdentityServiceClient\Api\DTO\Auth\RJwt;
 use SMSkin\IdentityServiceClient\Api\DTO\Auth\RToken;
 use SMSkin\IdentityServiceClient\Api\DTO\Identity\RIdentity;
+use SMSkin\IdentityServiceClient\Api\DTO\Identity\RScope;
 use SMSkin\IdentityServiceClient\Api\Requests\Auth\Email\Authorize as AuthorizeByEmail;
 use SMSkin\IdentityServiceClient\Api\Requests\Auth\Email\Validate as ValidateByEmail;
 use SMSkin\IdentityServiceClient\Api\Requests\Auth\Impersonate;
@@ -21,7 +22,6 @@ use SMSkin\IdentityServiceClient\Api\Requests\Auth\Jwt\Refresh;
 use SMSkin\IdentityServiceClient\Api\Requests\Identity\GetIdentity;
 use SMSkin\IdentityServiceClient\Api\Requests\Identity\GetScopes;
 use SMSkin\IdentityServiceClient\Api\Requests\Identity\Logout;
-use SMSkin\IdentityServiceClient\Enums\Scope;
 use SMSkin\IdentityServiceClient\Guards\Session\Exceptions\MutexException;
 use SMSkin\IdentityServiceClient\Guards\Session\Exceptions\UnsupportedGuardMethod;
 use SMSkin\IdentityServiceClient\Guards\Session\Support\TokenStorage;
@@ -346,9 +346,6 @@ class Guard extends SessionGuard
         }
     }
 
-    /**
-     * @return array<Scope>
-     */
     private function getScopes(RToken $token): array
     {
         $uses = config('identity-service-client.scopes.uses');
@@ -356,7 +353,7 @@ class Guard extends SessionGuard
 
         $scopes = [];
         foreach ($uses as $scope) {
-            if (in_array($scope->value, $available)) {
+            if (in_array($scope, $available)) {
                 $scopes[] = $scope;
             }
         }
@@ -365,7 +362,7 @@ class Guard extends SessionGuard
 
     /**
      * @param RToken $token
-     * @return array<Scope>|null
+     * @return array<RScope>|null
      */
     private function getAvailableScopes(RToken $token): ?array
     {
@@ -472,7 +469,7 @@ class Guard extends SessionGuard
 
     /**
      * @param RToken $token
-     * @param array<Scope>|null $scopes
+     * @param array|null $scopes
      * @return RJwt|null
      * @throws MutexException
      * @throws Exception

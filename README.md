@@ -99,6 +99,13 @@ For example:
 ...
 ```
 
+User has method `hasScope` for check required scope in jwt. 
+```php
+Gate::define('viewNova', function (User $user) {
+    return $user->hasScope(Scopes::IDENTITY_SERVICE_LOGIN);
+});
+```
+
 # Logic of authorization with unknown available scopes
 1. Gate tries login with email credentials and initial scope (`identity-service-client.scopes.initial`)
 2. Gate receives JWT

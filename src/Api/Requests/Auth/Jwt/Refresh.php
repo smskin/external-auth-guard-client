@@ -5,13 +5,12 @@ namespace SMSkin\IdentityServiceClient\Api\Requests\Auth\Jwt;
 use GuzzleHttp\Exception\GuzzleException;
 use SMSkin\IdentityServiceClient\Api\DTO\Auth\RJwt;
 use SMSkin\IdentityServiceClient\Api\Requests\BaseRequest;
-use SMSkin\IdentityServiceClient\Enums\Scope;
 
 class Refresh extends BaseRequest
 {
     /**
      * @param string $refreshToken
-     * @param array<Scope>|null $scopes
+     * @param array|null $scopes
      * @return RJwt
      * @throws GuzzleException
      */
@@ -22,7 +21,7 @@ class Refresh extends BaseRequest
             'token' => $refreshToken
         ];
         if ($scopes) {
-            $data['scopes'] = implode(',', array_column($scopes, 'value'));
+            $data['scopes'] = implode(',', $scopes);
         }
 
         $response = $client->post('/identity-service/api/auth/jwt/refresh', $data);

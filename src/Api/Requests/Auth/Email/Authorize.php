@@ -2,18 +2,16 @@
 
 namespace SMSkin\IdentityServiceClient\Api\Requests\Auth\Email;
 
-use BackedEnum;
 use GuzzleHttp\Exception\GuzzleException;
 use SMSkin\IdentityServiceClient\Api\DTO\Auth\RJwt;
 use SMSkin\IdentityServiceClient\Api\Requests\BaseRequest;
-use SMSkin\IdentityServiceClient\Enums\Scope;
 
 class Authorize extends BaseRequest
 {
     /**
      * @param string $email
      * @param string $password
-     * @param array<Scope> $scopes
+     * @param array $scopes
      * @return RJwt
      * @throws GuzzleException
      */
@@ -25,9 +23,7 @@ class Authorize extends BaseRequest
             [
                 'email' => $email,
                 'password' => $password,
-                'scopes' => collect($scopes)->map(function (BackedEnum $scope) {
-                    return $scope->value;
-                })->implode(',')
+                'scopes' => implode(',', $scopes)
             ]
         );
 

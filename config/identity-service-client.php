@@ -1,6 +1,7 @@
 <?php
 
-use SMSkin\IdentityServiceClient\Enums\Scope;
+use SMSkin\IdentityServiceClient\Enums\ScopeGroups;
+use SMSkin\IdentityServiceClient\Enums\Scopes;
 use SMSkin\IdentityServiceClient\Models\User;
 
 return [
@@ -14,12 +15,16 @@ return [
     'classes' => [
         'models' => [
             'user' => User::class
+        ],
+        'enums' => [
+            'scope-groups' => ScopeGroups::class,
+            'scopes'=> Scopes::class
         ]
     ],
     'scopes' => [
-        'initial' => Scope::SYSTEM_CHANGE_SCOPES,
+        'initial' => Scopes::SYSTEM_CHANGE_SCOPES,
         'uses' => [
-            Scope::IDENTITY_SERVICE_LOGIN
+            Scopes::IDENTITY_SERVICE_LOGIN
         ]
     ],
     'guards' => [

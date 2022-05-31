@@ -3,7 +3,6 @@
 namespace SMSkin\IdentityServiceClient\Models\Traits;
 
 use SMSkin\IdentityServiceClient\Api\DTO\Identity\RIdentity;
-use BackedEnum;
 
 trait IdentityTrait
 {
@@ -26,8 +25,8 @@ trait IdentityTrait
         return $this->identity;
     }
 
-    public function hasScope(BackedEnum $scope): bool
+    public function hasScope(string $scope): bool
     {
-        return in_array($scope->value, $this->identity->scopes);
+        return in_array($scope, $this->identity->scopes);
     }
 }

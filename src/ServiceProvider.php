@@ -25,7 +25,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->registerConfig();
 
         $this->app->register(Api\Providers\ServiceProvider::class);
-        $this->app->register(Guard\ServiceProvider::class);
+        $this->app->register(Guards\ServiceProvider::class);
     }
 
     private function loadConfig()

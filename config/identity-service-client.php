@@ -1,6 +1,6 @@
 <?php
 
-use SMSkin\IdentityServiceClient\Guard\Enums\Scope;
+use SMSkin\IdentityServiceClient\Enums\Scope;
 use SMSkin\IdentityServiceClient\Models\User;
 
 return [

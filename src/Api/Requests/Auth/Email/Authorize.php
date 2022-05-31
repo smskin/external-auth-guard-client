@@ -2,11 +2,11 @@
 
 namespace SMSkin\IdentityServiceClient\Api\Requests\Auth\Email;
 
+use BackedEnum;
+use GuzzleHttp\Exception\GuzzleException;
 use SMSkin\IdentityServiceClient\Api\DTO\Auth\RJwt;
 use SMSkin\IdentityServiceClient\Api\Requests\BaseRequest;
-use GuzzleHttp\Exception\GuzzleException;
-use SMSkin\IdentityServiceClient\Guard\Enums\Scope;
-use BackedEnum;
+use SMSkin\IdentityServiceClient\Enums\Scope;
 
 class Authorize extends BaseRequest
 {

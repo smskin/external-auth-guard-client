@@ -1,6 +1,5 @@
 <?php
 
-use SMSkin\IdentityServiceClient\Enums\ScopeGroups;
 use SMSkin\IdentityServiceClient\Enums\Scopes;
 use SMSkin\IdentityServiceClient\Models\User;
 

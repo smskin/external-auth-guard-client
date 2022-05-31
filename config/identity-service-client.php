@@ -15,10 +15,6 @@ return [
     'classes' => [
         'models' => [
             'user' => User::class
-        ],
-        'enums' => [
-            'scope-groups' => ScopeGroups::class,
-            'scopes'=> Scopes::class
         ]
     ],
     'scopes' => [

@@ -14,9 +14,9 @@ class Validate extends BaseRequest
      * @return bool
      * @throws GuzzleException
      */
-    public function execute(string $email, string $password): bool
+    public static function execute(string $email, string $password): bool
     {
-        $client = $this->getClient();
+        $client = self::getClient();
         $response = $client->post(
             '/identity-service/api/auth/email/validate',
             [

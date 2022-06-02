@@ -15,9 +15,9 @@ class Authorize extends BaseRequest
      * @return RJwt
      * @throws GuzzleException
      */
-    public function execute(string $email, string $password, array $scopes): RJwt
+    public static function execute(string $email, string $password, array $scopes): RJwt
     {
-        $client = $this->getClient();
+        $client = self::getClient();
         $response = $client->post(
             '/identity-service/api/auth/email/authorize',
             [

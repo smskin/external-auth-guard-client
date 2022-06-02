@@ -13,9 +13,9 @@ class GetScopes extends BaseRequest
      * @return array<RScope>
      * @throws GuzzleException
      */
-    public function execute(string $token): array
+    public static function execute(string $token): array
     {
-        $client = $this->getClient();
+        $client = self::getClient();
         $client->setAccessToken($token);
         $response = $client->get(
             '/identity-service/api/identity/scopes'

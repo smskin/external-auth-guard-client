@@ -55,7 +55,7 @@ class JWT
         $this->requireToken();
 
         try {
-            app(Logout::class)->execute($this->token);
+            Logout::execute($this->token);
         } catch (GuzzleException) {
 
         }

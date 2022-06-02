@@ -14,14 +14,14 @@ class GetIdentity extends BaseRequest
      * @return RIdentity
      * @throws GuzzleException
      */
-    public function execute(string $token): RIdentity
+    public static function execute(string $token): RIdentity
     {
-        $identity = $this->getIdentityFromCache($token);
+        $identity = self::getIdentityFromCache($token);
         if ($identity) {
             return $identity;
         }
 
-        $client = $this->getClient();
+        $client = self::getClient();
         $client->setAccessToken($token);
         $response = $client->get(
             '/identity-service/api/identity'
@@ -29,18 +29,18 @@ class GetIdentity extends BaseRequest
 
         $data = json_decode($response->getBody()->getContents(), true);
         $identity = (new RIdentity)->fromArray($data);
-        $this->putIdentityToCache($token, $identity);
+        self::putIdentityToCache($token, $identity);
         return $identity;
     }
 
-    private function getCacheKey(string $token): string
+    private static function getCacheKey(string $token): string
     {
         return 'api_request_cache_' . md5(static::class . '_' . $token);
     }
 
-    private function getIdentityFromCache(string $token): ?RIdentity
+    private static function getIdentityFromCache(string $token): ?RIdentity
     {
-        $data = Cache::get($this->getCacheKey($token));
+        $data = Cache::get(self::getCacheKey($token));
         if (!$data) {
             return null;
         }
@@ -48,8 +48,8 @@ class GetIdentity extends BaseRequest
         return (new RIdentity)->fromArray($data);
     }
 
-    private function putIdentityToCache(string $token, RIdentity $identity): void
+    private static function putIdentityToCache(string $token, RIdentity $identity): void
     {
-        Cache::put($this->getCacheKey($token), $identity->toArray(), 1);
+        Cache::put(self::getCacheKey($token), $identity->toArray(), 1);
     }
 }

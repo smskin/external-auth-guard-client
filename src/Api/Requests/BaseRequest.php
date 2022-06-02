@@ -7,7 +7,7 @@ use function app;
 
 abstract class BaseRequest
 {
-    protected function getClient(): ApiClient
+    protected static function getClient(): ApiClient
     {
         return app(ApiClient::class);
     }

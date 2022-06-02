@@ -7,17 +7,17 @@ use SMSkin\IdentityServiceClient\Models\Contracts\HasIdentity;
 
 class UserRepository
 {
-    public function create(RIdentity $identity): HasIdentity
+    public static function create(RIdentity $identity): HasIdentity
     {
         /** @noinspection PhpUndefinedMethodInspection */
-        $user = $this->getUser()::firstOrCreate([
+        $user = self::getUser()::firstOrCreate([
             'identity_uuid' => $identity->uuid
         ]);
         $user->setIdentity($identity);
         return $user;
     }
 
-    private function getUser(): HasIdentity
+    private static function getUser(): HasIdentity
     {
         return app(config('identity-service-client.classes.models.user'));
     }

@@ -266,7 +266,7 @@ class Guard extends SessionGuard
         }
 
         try {
-            app(Logout::class)->execute($this->accessToken->value);
+            Logout::execute($this->accessToken->value);
         } catch (GuzzleException $exception) {
             $this->logGuzzleException('logout', $exception);
         }
@@ -291,7 +291,7 @@ class Guard extends SessionGuard
     private function validateByEmail(string $email, string $password): bool
     {
         try {
-            return app(ValidateByEmail::class)->execute($email, $password);
+            return ValidateByEmail::execute($email, $password);
         } catch (GuzzleException $exception) {
             $this->logGuzzleException('validateByEmail - 1', $exception);
             return false;
@@ -317,7 +317,7 @@ class Guard extends SessionGuard
     {
         try {
             /** @noinspection PhpUndefinedFieldInspection */
-            return app(Impersonate::class)->execute($user->identity_uuid);
+            return Impersonate::execute($user->identity_uuid);
         } catch (GuzzleException $exception) {
             $this->logGuzzleException('attemptByEmail - 1', $exception);
             return null;
@@ -333,11 +333,7 @@ class Guard extends SessionGuard
     private function getJwtByEmailCredentials(string $email, string $password): ?RJwt
     {
         try {
-            $jwt = app(AuthorizeByEmail::class)
-                ->execute($email, $password, [config('identity-service-client.scopes.initial')]);
-            if (!$jwt) {
-                return null;
-            }
+            $jwt = AuthorizeByEmail::execute($email, $password, [config('identity-service-client.scopes.initial')]);
             $scopes = $this->getScopes($jwt->accessToken);
             return $this->getJwtByRefreshToken($jwt->refreshToken, $scopes);
         } catch (GuzzleException $exception) {
@@ -367,7 +363,7 @@ class Guard extends SessionGuard
     private function getAvailableScopes(RToken $token): ?array
     {
         try {
-            return app(GetScopes::class)->execute($token->value);
+            return GetScopes::execute($token->value);
         } catch (GuzzleException $exception) {
             $this->logGuzzleException('getAvailableScopes', $exception);
             return null;
@@ -377,21 +373,17 @@ class Guard extends SessionGuard
     private function getRemoteIdentityByToken(RToken $token): ?RIdentity
     {
         try {
-            $identity = app(GetIdentity::class)->execute($token->value);
+            $identity = GetIdentity::execute($token->value);
         } catch (GuzzleException $exception) {
             $this->logGuzzleException('getRemoteIdentityByToken', $exception);
             return null;
-        }
-
-        if (!$identity) {
-            $this->logDebug('User by access token not received');
         }
         return $identity;
     }
 
     private function getUserByIdentity(RIdentity $identity): HasIdentity
     {
-        return app(UserRepository::class)->create($identity);
+        return UserRepository::create($identity);
     }
 
     private function logGuzzleException(string $method, GuzzleException $exception)
@@ -483,7 +475,7 @@ class Guard extends SessionGuard
         }
 
         try {
-            return app(Refresh::class)->execute($token->value, $scopes);
+            return Refresh::execute($token->value, $scopes);
         } catch (GuzzleException $exception) {
             $this->logGuzzleException('getJwtByRefreshToken', $exception);
             return null;

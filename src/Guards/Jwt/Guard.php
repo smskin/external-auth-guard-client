@@ -68,18 +68,13 @@ class Guard implements GuardContract
         }
 
         try {
-            $identity = app(GetIdentity::class)->execute($token);
+            $identity = GetIdentity::execute($token);
         } catch (GuzzleException) {
             $this->loggedOut = true;
             return null;
         }
 
-        if (!$identity) {
-            $this->loggedOut = true;
-            return null;
-        }
-
-        $user = app(UserRepository::class)->create($identity);
+        $user = UserRepository::create($identity);
         $this->setUser($user);
         return $user;
     }
@@ -104,7 +99,7 @@ class Guard implements GuardContract
 
         if ($email) {
             try {
-                return app(ValidateByEmail::class)->execute($email, $password);
+                return ValidateByEmail::execute($email, $password);
             } catch (GuzzleException) {
                 return false;
             }
@@ -162,13 +157,13 @@ class Guard implements GuardContract
     private function attemptByEmail(string $email, string $password): bool
     {
         try {
-            $jwt = app(AuthorizeByEmail::class)->execute(
+            $jwt = AuthorizeByEmail::execute(
                 $email, 
                 $password,
                 config('identity-service-client.scopes')
             );
-            $identity = app(GetIdentity::class)->execute($jwt->accessToken->value);
-            $user = app(UserRepository::class)->create($identity);
+            $identity = GetIdentity::execute($jwt->accessToken->value);
+            $user = UserRepository::create($identity);
             $this->login($user, $jwt->accessToken->value);
         } catch (GuzzleException) {
             return false;

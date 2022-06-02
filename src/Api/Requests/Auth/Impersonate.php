@@ -13,9 +13,9 @@ class Impersonate extends BaseRequest
      * @return RJwt
      * @throws GuzzleException
      */
-    public function execute(string $uuid): RJwt
+    public static function execute(string $uuid): RJwt
     {
-        $client = $this->getClient();
+        $client = self::getClient();
         $response = $client->post(
             '/identity-service/api/auth/impersonate',
             [

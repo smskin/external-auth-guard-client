@@ -11,9 +11,9 @@ class Logout extends BaseRequest
      * @param string $token
      * @throws GuzzleException
      */
-    public function execute(string $token): void
+    public static function execute(string $token): void
     {
-        $client = $this->getClient();
+        $client = self::getClient();
         $client->setAccessToken($token);
         $client->get(
             '/identity-service/api/identity/logout'

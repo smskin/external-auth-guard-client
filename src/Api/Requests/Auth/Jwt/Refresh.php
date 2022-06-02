@@ -14,9 +14,9 @@ class Refresh extends BaseRequest
      * @return RJwt
      * @throws GuzzleException
      */
-    public function execute(string $refreshToken, ?array $scopes = null): RJwt
+    public static function execute(string $refreshToken, ?array $scopes = null): RJwt
     {
-        $client = $this->getClient();
+        $client = self::getClient();
         $data = [
             'token' => $refreshToken
         ];

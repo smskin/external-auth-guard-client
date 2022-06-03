@@ -23,8 +23,7 @@ class ApiClient
         if (!$host) {
             throw new Exception('Api host not defined');
         }
-        if (!$prefix)
-        {
+        if (!$prefix) {
             throw new Exception('Api prefix not defined');
         }
     }
@@ -63,7 +62,7 @@ class ApiClient
     {
         return $this->getClient()->request(
             'POST',
-            $this->host . $uri,
+            $this->host . '/' . $this->prefix . $uri,
             [
                 RequestOptions::JSON => $body,
                 'headers' => array_merge(

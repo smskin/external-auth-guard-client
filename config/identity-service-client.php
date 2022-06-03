@@ -4,7 +4,6 @@ use SMSkin\IdentityServiceClient\Enums\Scopes;
 use SMSkin\IdentityServiceClient\Models\User;
 
 return [
-    'host' => env('IDENTITY_SERVICE_CLIENT_HOST'),
     'debug' => env('IDENTITY_SERVICE_CLIENT_DEBUG', false),
     'parser' => [
         'cookies' => [
@@ -36,7 +35,9 @@ return [
             ]
         ]
     ],
-    'api' => [
-        'token' => env('IDENTITY_SERVICE_CLIENT_API_TOKEN')
+    'host' => [
+        'host' => env('IDENTITY_SERVICE_CLIENT_HOST'),
+        'prefix' => 'identity-service',
+        'api_token' => env('IDENTITY_SERVICE_CLIENT_HOST_API_TOKEN')
     ]
 ];

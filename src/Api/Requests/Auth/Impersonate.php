@@ -17,7 +17,7 @@ class Impersonate extends BaseRequest
     {
         $client = self::getClient();
         $response = $client->post(
-            '/identity-service/api/auth/impersonate',
+            '/api/auth/impersonate',
             [
                 'uuid' => $uuid
             ],

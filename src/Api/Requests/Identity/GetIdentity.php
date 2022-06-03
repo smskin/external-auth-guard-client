@@ -24,7 +24,7 @@ class GetIdentity extends BaseRequest
         $client = self::getClient();
         $client->setAccessToken($token);
         $response = $client->get(
-            '/identity-service/api/identity'
+            '/api/identity'
         );
 
         $data = json_decode($response->getBody()->getContents(), true);

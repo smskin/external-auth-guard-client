@@ -18,7 +18,7 @@ class Validate extends BaseRequest
     {
         $client = self::getClient();
         $response = $client->post(
-            '/identity-service/api/auth/email/validate',
+            '/api/auth/email/validate',
             [
                 'email' => $email,
                 'password' => $password

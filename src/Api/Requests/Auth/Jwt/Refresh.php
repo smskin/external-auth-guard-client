@@ -24,7 +24,7 @@ class Refresh extends BaseRequest
             $data['scopes'] = implode(',', $scopes);
         }
 
-        $response = $client->post('/identity-service/api/auth/jwt/refresh', $data);
+        $response = $client->post('/api/auth/jwt/refresh', $data);
 
         $data = json_decode($response->getBody()->getContents(), true);
         return (new RJwt())->fromArray($data);

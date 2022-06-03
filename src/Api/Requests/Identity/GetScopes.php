@@ -18,7 +18,7 @@ class GetScopes extends BaseRequest
         $client = self::getClient();
         $client->setAccessToken($token);
         $response = $client->get(
-            '/identity-service/api/identity/scopes'
+            '/api/identity/scopes'
         );
 
         $data = json_decode($response->getBody()->getContents(), true);

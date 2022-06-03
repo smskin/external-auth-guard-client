@@ -19,7 +19,7 @@ class Authorize extends BaseRequest
     {
         $client = self::getClient();
         $response = $client->post(
-            '/identity-service/api/auth/email/authorize',
+            '/api/auth/email/authorize',
             [
                 'email' => $email,
                 'password' => $password,

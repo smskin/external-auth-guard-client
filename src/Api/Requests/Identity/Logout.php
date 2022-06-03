@@ -16,7 +16,7 @@ class Logout extends BaseRequest
         $client = self::getClient();
         $client->setAccessToken($token);
         $client->get(
-            '/identity-service/api/identity/logout'
+            '/api/identity/logout'
         );
     }
 }

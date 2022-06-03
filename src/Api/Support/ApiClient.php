@@ -15,12 +15,17 @@ class ApiClient
 
     /**
      * @param string $host
+     * @param string $prefix
      * @throws Exception
      */
-    public function __construct(protected string $host)
+    public function __construct(protected string $host, protected string $prefix)
     {
-        if (!$host){
+        if (!$host) {
             throw new Exception('Api host not defined');
+        }
+        if (!$prefix)
+        {
+            throw new Exception('Api prefix not defined');
         }
     }
 
@@ -37,7 +42,7 @@ class ApiClient
 
         return $this->getClient()->request(
             'GET',
-            $this->host . $uri . $params,
+            $this->host . '/' . $this->prefix . $uri . $params,
             [
                 'headers' => array_merge(
                     $this->getDefaultHeaders(),

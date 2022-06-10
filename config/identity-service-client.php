@@ -18,7 +18,7 @@ return [
     'scopes' => [
         'initial' => Scopes::SYSTEM_CHANGE_SCOPES,
         'uses' => [
-            Scopes::IDENTITY_SERVICE_LOGIN
+            Scopes::SYSTEM_CHANGE_SCOPES
         ]
     ],
     'guards' => [

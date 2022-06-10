@@ -5,15 +5,17 @@ services:
       context: './../'
       dockerfile: ./docker/Dockerfile
       args:
-        - INSTALL_BCMATH=true
-        - INSTALL_PHPREDIS=true
+        - INSTALL_ZIP=true
+        - INSTALL_GD=false
+        - INSTALL_BCMATH=false
+        - INSTALL_PHPREDIS=false
         - INSTALL_OPCACHE=false
         - INSTALL_IMAGEMAGICK=false
         - INSTALL_EXIF=false
         - INSTALL_PCNTL=false
         - INSTALL_INTL=false
         - INSTALL_SOAP=false
-        - INSTALL_PGSQL=true
+        - INSTALL_PGSQL=false
         - INSTALL_MYSQL=false
         - INSTALL_GETTEXT=false
         - INSTALL_SOCKETS=false

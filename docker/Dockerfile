@@ -20,8 +20,12 @@ RUN curl -s http://getcomposer.org/installer | php && \
 #####################################
 # PHP Zip:
 #####################################
-RUN apt-get install -y libzip-dev zip unzip \
-    && docker-php-ext-install zip
+ARG INSTALL_ZIP=false
+
+RUN if [ ${INSTALL_ZIP} = true ]; then \
+    apt-get install -y libzip-dev zip unzip \
+        && docker-php-ext-install zip \
+;fi
 
 #####################################
 # PHP PDO Mysql:
@@ -36,14 +40,17 @@ RUN if [ ${INSTALL_MYSQL} = true ]; then \
 #####################################
 # PHP GD
 #####################################
+ARG INSTALL_GD=false
 
-RUN apt-get install -y libjpeg-dev libpng-dev libwebp-dev libxpm-dev && \
-    docker-php-ext-configure gd \
-               --enable-gd \
-               --with-webp \
-               --with-jpeg \
-               --with-xpm \
-    && docker-php-ext-install gd
+RUN if [ ${INSTALL_GD} = true ]; then \
+    apt-get install -y libjpeg-dev libpng-dev libwebp-dev libxpm-dev && \
+        docker-php-ext-configure gd \
+                   --enable-gd \
+                   --with-webp \
+                   --with-jpeg \
+                   --with-xpm \
+        && docker-php-ext-install gd \
+;fi
 
 #####################################
 # PHP Bcmath:

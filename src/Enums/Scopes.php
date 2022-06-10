@@ -12,7 +12,7 @@ class Scopes extends BaseEnum
     public const IDENTITY_SERVICE_LOGIN = 'identity-service:login';
     public const IDENTITY_SERVICE_IMPERSONATE = 'identity-service:impersonate';
     public const IDENTITY_SERVICE_CHANGE_PERMISSIONS = 'identity-service:change-permissions';
-
+    public const IDENTITY_SERVICE_CHANGE_USER = 'identity-service:change-user';
 
     /**
      * @return Collection<EnumItem>
@@ -32,6 +32,9 @@ class Scopes extends BaseEnum
             (new EnumItem())
                 ->setId(self::IDENTITY_SERVICE_CHANGE_PERMISSIONS)
                 ->setTitle('Изменение прав пользователя в Identity service'),
+            (new EnumItem())
+                ->setId(self::IDENTITY_SERVICE_CHANGE_USER)
+                ->setTitle('Редактирование пользователей в Identity service'),
         ]);
     }
 }

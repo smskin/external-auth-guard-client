@@ -29,7 +29,8 @@ class ScopeGroups extends BaseEnum
                 ->setScopes(collect([
                     Scopes::getById(Scopes::IDENTITY_SERVICE_LOGIN),
                     Scopes::getById(Scopes::IDENTITY_SERVICE_IMPERSONATE),
-                    Scopes::getById(Scopes::IDENTITY_SERVICE_CHANGE_PERMISSIONS)
+                    Scopes::getById(Scopes::IDENTITY_SERVICE_CHANGE_PERMISSIONS),
+                    Scopes::getById(Scopes::IDENTITY_SERVICE_CHANGE_USER)
                 ]))
         ]);
     }

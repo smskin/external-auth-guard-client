@@ -10,4 +10,6 @@ interface HasIdentity extends QueueableEntity
     public function setIdentity(RIdentity $identity): void;
 
     public function getIdentity(): ?RIdentity;
+
+    public function hasScope(string $scope): bool;
 }

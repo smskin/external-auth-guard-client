@@ -20,7 +20,6 @@ use SMSkin\IdentityServiceClient\Guards\Jwt\Exceptions\JWTException;
 use SMSkin\IdentityServiceClient\Guards\Jwt\Exceptions\UserNotDefinedException;
 use SMSkin\IdentityServiceClient\Models\Contracts\HasIdentity;
 use SMSkin\IdentityServiceClient\Repository\UserRepository;
-use function app;
 use function config;
 
 class Guard implements GuardContract

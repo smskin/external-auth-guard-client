@@ -3,7 +3,7 @@
 namespace SMSkin\IdentityServiceClient\Api\DTO\Identity;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Support\Arrayable;
+use SMSkin\LaravelSupport\Contracts\Arrayable;
 
 class RIdentity implements Arrayable
 {
@@ -28,7 +28,7 @@ class RIdentity implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->uuid = $data['uuid'];
         $this->name = $data['name'];

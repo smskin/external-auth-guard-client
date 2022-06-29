@@ -20,7 +20,7 @@ class REmailCredential extends RCredential
         );
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         parent::fromArray($data);
 

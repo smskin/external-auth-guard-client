@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use SMSkin\IdentityServiceClient\Api\Requests\Identity\Logout;
 use SMSkin\IdentityServiceClient\Guards\Jwt\Exceptions\JWTException;
 use SMSkin\IdentityServiceClient\Guards\Jwt\Http\Parser\Parser;
-use function app;
 
 class JWT
 {

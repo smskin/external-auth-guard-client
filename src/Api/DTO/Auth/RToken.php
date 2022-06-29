@@ -3,7 +3,7 @@
 namespace SMSkin\IdentityServiceClient\Api\DTO\Auth;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Support\Arrayable;
+use SMSkin\LaravelSupport\Contracts\Arrayable;
 
 class RToken implements Arrayable
 {
@@ -22,7 +22,7 @@ class RToken implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->value = $data['value'];
         $this->expiresIn = $data['expiresIn'];

@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityServiceClient\Api\DTO\Identity;
 
-use Illuminate\Contracts\Support\Arrayable;
+use SMSkin\LaravelSupport\Contracts\Arrayable;
 
 class RScope implements Arrayable
 {
@@ -17,7 +17,7 @@ class RScope implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->name = $data['name'];
         $this->value = $data['value'];

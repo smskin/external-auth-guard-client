@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityServiceClient\Api\DTO;
 
-use Illuminate\Contracts\Support\Arrayable;
+use SMSkin\LaravelSupport\Contracts\Arrayable;
 
 class ROperationResult implements Arrayable
 {
@@ -15,7 +15,7 @@ class ROperationResult implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->result = $data['result'];
         return $this;

@@ -3,7 +3,7 @@
 namespace SMSkin\IdentityServiceClient\Api\DTO\Identity;
 
 use SMSkin\IdentityServiceClient\Api\Enums\CredentialType;
-use Illuminate\Contracts\Support\Arrayable;
+use SMSkin\LaravelSupport\Contracts\Arrayable;
 
 abstract class RCredential implements Arrayable
 {
@@ -16,7 +16,7 @@ abstract class RCredential implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->type = CredentialType::from($data['type']);
         return $this;

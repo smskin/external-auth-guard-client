@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityServiceClient\Api\DTO\Auth;
 
-use Illuminate\Contracts\Support\Arrayable;
+use SMSkin\LaravelSupport\Contracts\Arrayable;
 
 class RJwt implements Arrayable
 {
@@ -17,7 +17,7 @@ class RJwt implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->accessToken = (new RToken())->fromArray($data['accessToken']);
         $this->refreshToken = (new RToken())->fromArray($data['refreshToken']);
